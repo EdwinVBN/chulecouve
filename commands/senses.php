@@ -1,6 +1,6 @@
 <?php require_once 'helper_functions.php'; ?>
 <?php
-   function look($arguments, $puppet, $conn) {
+   function look($arguments, $person, $conn) {
       /**
        * describe what the character is looking at
        */

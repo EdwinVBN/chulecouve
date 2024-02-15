@@ -3,7 +3,7 @@
     /**
     * generic commands with no specific gameplay elements
     */
-    function help($arguments, $puppet, $conn) {
+    function help($arguments, $person, $conn) {
         /**
          * returns all commands available to the player
          */
@@ -16,7 +16,7 @@
         echo implode(', ', array_keys($text_to_magic_converter)) . "\n";
     }
 
-    function quit($arguments, $puppet, $conn) {
+    function quit($arguments, $person, $conn) {
         /**
          * game shutdown
          */

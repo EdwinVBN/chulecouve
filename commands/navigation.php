@@ -1,6 +1,6 @@
 <?php require_once 'helper_functions.php'; ?>
 <?php
-    function navigate($arguments, $puppet, $conn) {
+    function navigate($arguments, $person, $conn) {
         /**
          * move character over nodes to other rooms
          * the first argument is the direction (node name)

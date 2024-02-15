@@ -6,7 +6,7 @@
      * all code goes in git so use .env files and add it to .gitignore
      */ 
     $servername = "localhost";
-    $databasename = "muddy";
+    $databasename = "world";
     $username = "root";
     $password = "Wolfie01"; 
     

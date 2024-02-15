@@ -25,7 +25,7 @@
     
     echo "\033[32mdone!\033[0m\n\n";
 
-    $name_of_my_game = "fluffy world";
+    $name_of_my_game = "World";
     echo "\033[96mWelcome to $name_of_my_game, start typing and enjoy!\033[0m\n";
     echo "type 'help' for help or 'look' to have a look around\n\n";
 
@@ -106,15 +106,19 @@
      * to change to another character, switch user of change the puppet
      * you are connected to in the database.
      */
-    $my_username = 'teacher'; // you can also use 'student' or add your own
+    $my_username = 'Katsu'; // you can also use 'student' or add your own
 
-    $sql = "SELECT puppet FROM user WHERE name = :player_name";
+    $sql = "SELECT person_id, name FROM user WHERE name = :player_name";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':player_name', $my_username);
     $stmt->execute();
-    $puppet = $stmt->fetch(PDO::FETCH_ASSOC)['puppet'];
 
-    echo "you are playing puppet number {$puppet}\n";
+    $personData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $person = $personData['person_id'];
+    $name = $personData['name'];
+
+    echo "you are playing as {$name}!\n";
 while (true) {
     /**
      * this loop is the actual game, 2 lines of code....
@@ -126,7 +130,7 @@ while (true) {
      * including the puppet so the code knows who is playing
      */
     $raw_command = readline(">");
-    command_parser(trim($raw_command), $puppet, $text_to_magic_converter, $conn);
+    command_parser(trim($raw_command), $person, $text_to_magic_converter, $conn);
 };
 ?>
  

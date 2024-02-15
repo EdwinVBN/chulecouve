@@ -1,5 +1,5 @@
 <?php
-    function command_parser($raw_command, $puppet, $command_to_function_list, $conn) {
+    function command_parser($raw_command, $person, $command_to_function_list, $conn) {
         /**
          * the user input ($raw_command) is parsed into two variables
          *    $arguments : a list containing the exploded text
@@ -36,7 +36,7 @@
         if (isset($command_to_function_list[$command])) {
             // execute the command with the remaining user input
             // we hand the function the $arguments, the $puppet and the $conn
-            $command_to_function_list[$command]($arguments, $puppet, $conn);
+            $command_to_function_list[$command]($arguments, $person, $conn);
         } else {
             // handle invalid commands 
             echo "you want me to do what now?\n";
