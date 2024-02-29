@@ -106,7 +106,7 @@
      * to change to another character, switch user of change the puppet
      * you are connected to in the database.
      */
-    $my_username = 'Katsu'; // you can also use 'student' or add your own
+    $my_username = 'Jean'; // you can also use 'student' or add your own
 
     $sql = "SELECT person_id, name FROM user WHERE name = :player_name";
     $stmt = $conn->prepare($sql);
@@ -118,7 +118,14 @@
     $person = $personData['person_id'];
     $name = $personData['name'];
 
-    echo "you are playing as {$name}!\n";
+    $sql = "SELECT * FROM continent WHERE id = ($person)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $continentData = $stmt->fetch(PDO::FETCH_ASSOC);
+    $continent = $continentData['name'];
+
+    echo "you are playing as {$name} and you're in {$continent}\n";
 while (true) {
     /**
      * this loop is the actual game, 2 lines of code....
