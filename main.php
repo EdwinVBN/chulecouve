@@ -106,6 +106,22 @@
      * to change to another character, switch user of change the puppet
      * you are connected to in the database.
      */
+
+    $sql = "SELECT name FROM user";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    
+    $characters = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    foreach ($characters as $character) {
+        echo $character['name'] . "\n";
+    }
+    
+    // if(){
+        
+    // }
+
+
     $my_username = 'Jean'; // you can also use 'student' or add your own
 
     $sql = "SELECT person_id, name FROM user WHERE name = :player_name";
@@ -117,6 +133,7 @@
 
     $person = $personData['person_id'];
     $name = $personData['name'];
+
 
     $sql = "SELECT * FROM continent WHERE id = ($person)";
     $stmt = $conn->prepare($sql);
