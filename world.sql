@@ -12,6 +12,7 @@ CREATE TABLE world.continent (
 CREATE TABLE world.user (
 	name VARCHAR(20),
 	person_id INT UNSIGNED UNIQUE,
+	last_played VARCHAR(20),
 
 	PRIMARY KEY (name),
 	FOREIGN KEY (person_id) REFERENCES world.continent(id)
@@ -26,11 +27,11 @@ INSERT INTO world.continent (name, description) VALUES
 	('Oceania', 'A rugged and resilient land, where the wildlife is as unique as the spirit of mateship that defines its people'),
 	('South America', 'A continent pulsing with the rhythm of the rainforest, where ancient ruins and vibrant cities coexist under the southern sky');
 
-INSERT INTO world.user (name, person_id) VALUES
-    ('Amara', 1),
-	('Zihu', 2),
-	('Katsu', 3),
-	('Jean', 4),
-	('Jake', 5),
-	('Matilda', 6),
-	('Carlos', 7)
+INSERT INTO world.user (name, person_id, last_played) VALUES
+    ('Amara', 1, 'true'),
+	('Zihu', 2, 'false'),
+	('Katsu', 3, 'false'),
+	('Jean', 4, 'false'),
+	('Jake', 5, 'false'),
+	('Matilda', 6, 'false'),
+	('Carlos', 7, 'false')

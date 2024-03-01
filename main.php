@@ -22,6 +22,7 @@
     require_once 'commands/generic.php';
     require_once 'commands/navigation.php';
     require_once 'commands/senses.php';
+    require_once 'commands/switch.php';
     
     echo "\033[32mdone!\033[0m\n\n";
 
@@ -90,7 +91,8 @@
         'east' => 'navigate',
         'south' => 'navigate',
         'west' => 'navigate',
-        'look' => 'look');
+        'look' => 'look',
+        'switch' => 'switchChar');
 
     /**
      * the final step before the game starts is you!
@@ -106,7 +108,13 @@
      * to change to another character, switch user of change the puppet
      * you are connected to in the database.
      */
-    $my_username = 'Carlos'; // you can also use 'student' or add your own
+
+    $sql = "SELECT name FROM user WHERE last_played = 'true'";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $lastPlayed = $stmt->fetch(PDO::FETCH_ASSOC);
+    $my_username = $lastPlayed['name']; 
 
     $sql = "SELECT person_id, name FROM user WHERE name = :player_name";
     $stmt = $conn->prepare($sql);
