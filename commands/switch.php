@@ -1,6 +1,6 @@
 <?php require_once 'helper_functions.php'; ?>
 <?php
-function switchChar($conn) {
+function switchChar($arguments, $person, $conn) {
     $sql = "SELECT name FROM user WHERE last_played = 'true'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
