@@ -30,26 +30,21 @@ function switchChar($arguments, $person, $conn) {
     echo"\n";
     echo"Type your new character:\n";
     
-    $newChar = readline();
+    $newChar = ucfirst(readline());
 
     if(in_array($newChar, $charListArray)) {
         echo "\nYou're now playing as " . $newChar;
         echo"\n";
 
-        foreach($allChars as $char) {
-
-            if($char['name'] === $newChar) {
-
-                $sql = "UPDATE user SET last_played = 'false' WHERE last_played = 'true'";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
+        $sql = "UPDATE user SET last_played = 'false' WHERE last_played = 'true'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
     
-                $sql = "UPDATE user SET last_played = 'true' WHERE name = :newchar";
-                $stmt = $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':newchar', $newChar);
-                $stmt->execute();
-            }
-        }    
+        $sql = "UPDATE user SET last_played = 'true' WHERE name = :newchar";
+        $stmt = $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':newchar', $newChar);
+        $stmt->execute();
+        
     } else {
         echo "\nThat character is not available\n";
     }   

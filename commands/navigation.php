@@ -5,6 +5,8 @@
 // Zorgen dat de gekozen keuze bestaat en zorgen dat data goed verwerkt word
 
 function navigate($arguments, $person, $conn) {
+    $locList = "";
+
     $sql = "SELECT * FROM continent WHERE current_location = 'true'";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -40,13 +42,35 @@ function navigate($arguments, $person, $conn) {
                     echo "\nYou have multiple choices from here, where do you want to go?\n\n";
 
                     foreach($coldVarAntarctica as $var) {
-                        echo "{$var['name']}\n";   
+                        echo "{$var['name']}\n"; 
+                        
+                        $locList .= $var['name'] . ",";
                     }
+
+                    $locList = rtrim($locList, ',');
+                    $locList = explode(",", $locList);
 
                     echo "\n";
                     echo "Type your destination:\n";
 
-                    $destination = readline();
+                    $destination = ucfirst(readline());
+
+                    if(in_array($destination, $locList)) {
+                        echo "\nYou're now in $destination";
+                        echo"\n";
+                
+                        $sql = "UPDATE continent SET current_location = 'false' WHERE current_location = 'true'";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->execute();
+    
+                        $sql = "UPDATE continent SET current_location = 'true' WHERE name = :newloc";
+                        $stmt = $stmt = $conn->prepare($sql);
+                        $stmt->bindParam(':newloc', $destination);
+                        $stmt->execute();  
+                    } else {
+                        echo "\nThat destination is not available\n";
+                    }  
+
                     break;
                 default:
                     echo "That is not a direction\n";
@@ -70,13 +94,35 @@ function navigate($arguments, $person, $conn) {
                     echo "\nYou have multiple choices from here, where do you want to go?\n\n";
 
                     foreach($coldVarArctic as $var) {
-                        echo "{$var['name']}\n";   
+                        echo "{$var['name']}\n";
+                        
+                        $locList .= $var['name'] . ",";
                     }
+
+                    $locList = rtrim($locList, ',');
+                    $locList = explode(",", $locList);
 
                     echo "\n";
                     echo "Type your destination:\n";
 
-                    $destination = readline();
+                    $destination = ucfirst(readline());
+
+                    if(in_array($destination, $locList)) {
+                        echo "\nYou're now in $destination";
+                        echo"\n";
+                
+                        $sql = "UPDATE continent SET current_location = 'false' WHERE current_location = 'true'";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->execute();
+    
+                        $sql = "UPDATE continent SET current_location = 'true' WHERE name = :newloc";
+                        $stmt = $stmt = $conn->prepare($sql);
+                        $stmt->bindParam(':newloc', $destination);
+                        $stmt->execute();  
+                    } else {
+                        echo "\nThat destination is not available\n";
+                    }  
+
                     break;
                 default:
                     echo "That is not a direction\n";
