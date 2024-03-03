@@ -92,7 +92,8 @@
         'south' => 'navigate',
         'west' => 'navigate',
         'look' => 'look',
-        'switch' => 'switchChar');
+        'switch' => 'switchChar',
+        'status' => 'location');
 
     /**
      * the final step before the game starts is you!
@@ -126,9 +127,8 @@
     $person = $personData['person_id'];
     $name = $personData['name'];
 
-    $sql = "SELECT * FROM continent WHERE id = :person_id";
+    $sql = "SELECT name FROM continent WHERE current_location = 'true'";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':person_id', $person);
     $stmt->execute();
 
     $continentData = $stmt->fetch(PDO::FETCH_ASSOC);
