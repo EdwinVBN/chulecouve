@@ -23,6 +23,16 @@ CREATE TABLE world.user (
 	FOREIGN KEY (person_id) REFERENCES world.continent(id)
 );
 
+CREATE TABLE world.countries (
+	id INT UNSIGNED UNIQUE AUTO_INCREMENT,
+	country_name VARCHAR(100),
+	continent_id INT,
+	description VARCHAR(255),
+
+	PRIMARY KEY (id),
+	FOREIGN KEY (continent_id) REFERENCES world.continent(id)
+);
+
 INSERT INTO world.continent (name, description, current_location, north, east, south, west) VALUES
 	('Africa', 'A continent where the sunsets are as breathtaking as its rich culture, and the wildlife roams as freely as the spirit of adventure', 'true', 'Europe', 'Oceania', 'Antarctica', 'South America'),
 	('Antarctica', 'Earths final frontier, where the ice sparkles like diamonds and the silence speaks volumes about the beauty of natures calm', 'false', NULL, NULL, NULL, NULL),
@@ -41,4 +51,4 @@ INSERT INTO world.user (name, person_id, last_played) VALUES
 	('Jake', 5, 'false'),
 	('Matilda', 6, 'false'),
 	('Carlos', 7, 'false'),
-	('Emile', 8, 'false')
+	('Emile', 8, 'false');
