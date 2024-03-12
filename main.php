@@ -23,6 +23,7 @@
     require_once 'commands/navigation.php';
     require_once 'commands/senses.php';
     require_once 'commands/switch.php';
+    require_once 'commands/create.php';
     
     echo "\033[32mdone!\033[0m\n\n";
 
@@ -93,7 +94,9 @@
         'west' => 'navigate',
         'look' => 'look',
         'switch' => 'switchChar',
-        'status' => 'location');
+        'status' => 'location',
+        'create'=> 'createChar',
+    );
 
     /**
      * the final step before the game starts is you!
@@ -149,4 +152,3 @@ while (true) {
     command_parser(trim($raw_command), $person, $text_to_magic_converter, $conn);
 };
 ?>
- 
