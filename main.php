@@ -23,6 +23,7 @@
     require_once 'commands/navigation.php';
     require_once 'commands/senses.php';
     require_once 'commands/switch.php';
+    require_once 'commands/delete.php';
     
     echo "\033[32mdone!\033[0m\n\n";
 
@@ -93,7 +94,8 @@
         'west' => 'navigate',
         'look' => 'look',
         'switch' => 'switchChar',
-        'status' => 'location');
+        'status' => 'location',
+        'delete' => 'deleteChar');
 
     /**
      * the final step before the game starts is you!
