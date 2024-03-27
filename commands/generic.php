@@ -17,7 +17,7 @@
     }
 
     function location($arguments, $person, $conn) {
-        $sql = "SELECT name FROM continent WHERE current_location = 'true'";
+        $sql = "SELECT name, description FROM continent WHERE current_location = 'true'";
         $stmt = $conn->prepare($sql);
         $stmt->execute();
 
@@ -29,7 +29,11 @@
 
         $currChar = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        echo "You're playing as {$currChar['name']} and your location is {$location['name']}\n";
+        echo "\nYou're playing as {$currChar['name']} and your location is {$location['name']}\n";
+        echo "\e[3m\"{$location['description']}\"\e[23m\n";
+
+
+
     }
 
     function quit($arguments, $person, $conn) {

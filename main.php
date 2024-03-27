@@ -92,9 +92,8 @@
         'east' => 'navigate',
         'south' => 'navigate',
         'west' => 'navigate',
-        'look' => 'look',
+        'look' => 'location',
         'switch' => 'switchChar',
-        'status' => 'location',
         'delete' => 'deleteChar');
 
     /**
