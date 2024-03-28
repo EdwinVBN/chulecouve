@@ -7,7 +7,7 @@
 function navigate($arguments, $person, $conn) {
     $locList = "";
 
-    $sql = "SELECT * FROM continent WHERE current_location = 'true'";
+    $sql = "SELECT * FROM continent WHERE current_location = TRUE";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
 
@@ -15,8 +15,8 @@ function navigate($arguments, $person, $conn) {
 
     if($target['name'] !== 'Antarctica' && $target['name'] !== 'Arctic') {
         $sql = "UPDATE continent SET current_location = 
-        CASE WHEN name = :name THEN 'true' 
-        ELSE 'false' END";
+        CASE WHEN name = :name THEN TRUE 
+        ELSE FALSE END";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':name', $target["$arguments[0]"]);
         $stmt->execute();
@@ -59,11 +59,11 @@ function navigate($arguments, $person, $conn) {
                         echo "\nYou're now in $destination";
                         echo"\n";
                 
-                        $sql = "UPDATE continent SET current_location = 'false' WHERE current_location = 'true'";
+                        $sql = "UPDATE continent SET current_location = FALSE WHERE current_location = TRUE";
                         $stmt = $conn->prepare($sql);
                         $stmt->execute();
     
-                        $sql = "UPDATE continent SET current_location = 'true' WHERE name = :newloc";
+                        $sql = "UPDATE continent SET current_location = TRUE WHERE name = :newloc";
                         $stmt = $stmt = $conn->prepare($sql);
                         $stmt->bindParam(':newloc', $destination);
                         $stmt->execute();  
@@ -111,11 +111,11 @@ function navigate($arguments, $person, $conn) {
                         echo "\nYou're now in $destination";
                         echo"\n";
                 
-                        $sql = "UPDATE continent SET current_location = 'false' WHERE current_location = 'true'";
+                        $sql = "UPDATE continent SET current_location = FALSE WHERE current_location = TRUE";
                         $stmt = $conn->prepare($sql);
                         $stmt->execute();
     
-                        $sql = "UPDATE continent SET current_location = 'true' WHERE name = :newloc";
+                        $sql = "UPDATE continent SET current_location = TRUE WHERE name = :newloc";
                         $stmt = $stmt = $conn->prepare($sql);
                         $stmt->bindParam(':newloc', $destination);
                         $stmt->execute();  

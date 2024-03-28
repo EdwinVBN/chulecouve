@@ -5,8 +5,7 @@ function createChar($arguments, $person, $conn) {
     while (true) {
         $continentList = "";
    
-        echo "\nCreate a new character...\n";
-        echo "name?\n";
+        echo "\nType your character name:\n";
    
         $newPerson = ucfirst(readline());
    
@@ -27,12 +26,12 @@ function createChar($arguments, $person, $conn) {
    
             $continents = $stmt->fetchAll(PDO::FETCH_ASSOC);
    
-            echo "\nPick your continent...\n\n";
-   
             foreach ($continents as $continent) {
                 echo "{$continent['name']}\n";
                 $continentList .= $continent['name'] . ",";
             }
+
+            echo "\nPick your continent:\n";
    
             $continentList = rtrim($continentList, ',');
             $continentList = explode(",", $continentList);
@@ -82,14 +81,14 @@ function createChar($arguments, $person, $conn) {
                 $stmt->bindParam(':person_id', $contId);
                 $stmt->execute();
    
-                echo "\nCharacter Created.\n";
+                echo "\nCharacter Created\n";
                 break;
             } else {
-                echo "\nContinent does not exist.";
+                echo "\nContinent does not exist";
                 echo "\nChoose again...\n";
             }
         } else {
-            echo "\nName already taken.";
+            echo "\nName already taken";
             echo "\nTry again :(\n";
         }
     }
