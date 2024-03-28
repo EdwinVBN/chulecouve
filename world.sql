@@ -16,21 +16,11 @@ CREATE TABLE world.continent (
 
 CREATE TABLE world.user (
 	name VARCHAR(20),
-	person_id INT UNSIGNED UNIQUE,
+	person_id INT UNSIGNED,
 	last_played VARCHAR(20),
 
 	PRIMARY KEY (name),
 	FOREIGN KEY (person_id) REFERENCES world.continent(id)
-);
-
-CREATE TABLE world.countries (
-	id INT UNSIGNED UNIQUE AUTO_INCREMENT,
-	country_name VARCHAR(100),
-	continent_id INT,
-	description VARCHAR(255),
-
-	PRIMARY KEY (id),
-	FOREIGN KEY (continent_id) REFERENCES world.continent(id)
 );
 
 INSERT INTO world.continent (name, description, current_location, north, east, south, west) VALUES

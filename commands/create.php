@@ -38,23 +38,52 @@ function createChar($arguments, $person, $conn) {
             $continentList = explode(",", $continentList);
     
             $chooseContinent = ucfirst(readline());
+
     
             if (in_array($chooseContinent, array_column($continents, 'name'), true)) {
-                // $sql = "SELECT id FROM continent WHERE name = :chooseContinent";
-                // $stmt = $conn->prepare($sql);
-                // $stmt->bindParam(':chooseContinent', $chooseContinent);
-                // $stmt->execute();
+                $contId = null;
+
+                switch($chooseContinent){
+                    case 'Africa':
+                        $contId = 1;
+                        break;
+                    case 'Antarctica':
+                        $contId = 2;
+                        break;
+                    case 'Asia':
+                        $contId = 3;
+                        break;
+                    case 'Europe':
+                        $contId = 4;
+                        break;
+                    case 'North America':
+                        $contId = 5;
+                        break;
+                    case 'North america':
+                        $contId = 5;
+                        break;
+                    case 'Oceania':
+                        $contId = 6;
+                        break;
+                    case 'South America':
+                        $contId = 7;
+                        break;
+                    case 'South america':
+                        $contId = 7;
+                        break;
+                    case 'Arctic':
+                        $contId = 8;
+                        break;    
+                }
     
-                // $continentId = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
+                $sql = "INSERT INTO user (name, person_id, last_played) VALUES (:name, :person_id, 'false')";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':name', $newPerson);
+                $stmt->bindParam(':person_id', $contId);
+                $stmt->execute();
     
-                // $sql = "INSERT INTO user (name, person_id, last_played) VALUES (:name, :person_id, False)";
-                // $stmt = $conn->prepare($sql);
-                // $stmt->bindParam(':name', $newPerson);
-                // $stmt->bindParam(':person_id', $continentId);
-                // $stmt->execute();
-    
-                echo "\nCharacter Created.";
-                break; // Exit the loop once character is created
+                echo "\nCharacter Created.\n";
+                break;
             } else {
                 echo "\nContinent does not exist.";
                 echo "\nChoose again...\n";
