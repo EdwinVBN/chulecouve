@@ -5,7 +5,7 @@ CREATE TABLE world.continent (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(255),
 	description VARCHAR(255),
-	current_location VARCHAR(20),
+	current_location BOOLEAN,
 	north VARCHAR(20),
 	east VARCHAR(20),
 	south VARCHAR(20),
@@ -17,7 +17,7 @@ CREATE TABLE world.continent (
 CREATE TABLE world.user (
 	name VARCHAR(20),
 	person_id INT UNSIGNED UNIQUE,
-	last_played VARCHAR(20),
+	last_played BOOLEAN,
 
 	PRIMARY KEY (name),
 	FOREIGN KEY (person_id) REFERENCES world.continent(id)
