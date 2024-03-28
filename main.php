@@ -24,6 +24,7 @@
     require_once 'commands/senses.php';
     require_once 'commands/switch.php';
     require_once 'commands/delete.php';
+    require_once 'commands/create.php';
     
     echo "\033[32mdone!\033[0m\n\n";
 
@@ -94,7 +95,9 @@
         'west' => 'navigate',
         'look' => 'location',
         'switch' => 'switchChar',
-        'delete' => 'deleteChar');
+        'delete' => 'deleteChar',
+        'create' => 'createChar'
+    );
 
     /**
      * the final step before the game starts is you!
